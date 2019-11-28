@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Spotify Wrapper</title>
+</head>
+<style>
+  img {
+    height: 400px;
+    width: 400px;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+  }
+</style>
+<body>
+  <div>
+    <input type="text" id="albumName" required />
+    <button onclick="searchAlbums(document.getElementById('albumName').value)">
+      Pesquisar
+    </button>
+  </div>
+
+  <div id="albums"></div>
+
+<script src="../dist/spotify-wrapper.umd.js"></script>
+<script>
+  function searchAlbums(albumName) {
+    const albums = spotifyWrapper.searchAlbums(albumName);
+    const albumsEl = document.getElementById('albums');
+
+    albumsEl.innerHTML = "<div></div>";
+
+    albums
+      .then((data) => {
+        markup = data.albums.items.map(item =>
+          `<img src='${item.images[0].url}' alt='${item.name}' />`
+        ).join('');
+
+        if (markup.length === 0) {
+          albumsEl.innerHTML = "<p align='center'> Nenhum album encontrado <p/>"
+        } else {
+          albumsEl.innerHTML = markup;
+        }
+      })
+      .catch((error) => {
+        albumsEl.innerHTML = `<p align='center'>${error}<p/>`
+      });
+  }
+</script>
+</body>
+</html>
