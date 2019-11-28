@@ -3,7 +3,7 @@ node_js:
   - "10"
 
 before_script:
-  - npm i
+  - npm install --ignore-scripts
   - npm run build:all
 after_sucess:
   - npm run test:coverage
