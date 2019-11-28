@@ -9,7 +9,6 @@ install:
   - npm install -g babel-loader
 
 before_script:
-  - npm install --ignore-scripts
   - npm run build:all
 after_sucess:
   - npm run test:coverage
