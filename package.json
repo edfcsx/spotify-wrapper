@@ -2,7 +2,7 @@
   "name": "spotify-wrapper-tdd",
   "version": "1.2.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": ".\\node_modules\\.bin\\babel --out-dir lib src",
     "build:watch": "npm run build -- --watch",
@@ -15,8 +15,13 @@
     "test": ".\\node_modules\\.bin\\mocha tests/**/*.spec.js -- --reporter=spec --require @babel/register",
     "test:tdd": ".\\node_modules\\.bin\\mocha tests/**/*.spec.js -- --reporter=spec --watch --require @babel/register",
     "test:coverage": "nyc npm test",
-    "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls",
+    "npm:pack": "npm pack"
   },
+  "files": [
+    "dist",
+    "lib"
+  ],
   "nyc": {
     "functions": 80,
     "lines": 80,
