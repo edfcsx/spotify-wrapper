@@ -29,7 +29,12 @@
 <script src="../dist/spotify-wrapper.umd.js"></script>
 <script>
   function searchAlbums(albumName) {
-    const albums = spotifyWrapper.searchAlbums(albumName);
+
+    const spotify = new SpotifyWrapper({
+      token: 'BQCyQ_zclf3HEB9YUy-moAaoANqVaGJa2sFDeN0aEVaWvvBP5QXJkVPayL-mu9b6e60Uxui_lkG05EUEJ-29z8q85Nj5eRSKAjh6sr6ohKC6ydU3pFwqST57sFqxSf2aF0bv6912iRldD4HIRLzkparwXPqfUw',
+    });
+
+    const albums = spotify.search.albums(albumName);
     const albumsEl = document.getElementById('albums');
 
     albumsEl.innerHTML = "<div></div>";
